@@ -1,5 +1,10 @@
 version: 2.1
 
+parameters:
+  workflow-filter-based-only-on-parameters:
+    type: boolean
+    default: false
+
 jobs:
   myjob:
     docker:
@@ -7,8 +12,14 @@ jobs:
     steps:
       - checkout
       - run:
+          name: cat README
+          command: cat README.md
+      - run:
+          name: sleep
+          command: sleep 1000
+      - run:
           name: echo
-          command: echo "This config is defined in NEW-checkout-repo"
+          command: echo "This config is defined in NEW-trigger-repo"
 
 workflows:
   do_some_stuff:
